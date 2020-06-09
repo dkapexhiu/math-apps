@@ -1,0 +1,41 @@
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.6.2/math.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+<div class="center">
+
+<p>Write the number for derivative: </p>
+<input type="text" id="userInput" placeholder="Example: 2x^2+2x"></input>
+<button onclick="derivative()">Solve Derivative</button>
+
+<!-- add this line for function to write into -->
+<p>The answer for derivative is: </p>
+<p id="derivative"></p>
+
+<p>Write the number for logarithm: </p>
+<input type="text" id="userLog" placeholder="Example: 10"></input>
+<button onclick="logarithm()">Solve Logarithm</button>
+
+<!-- add this line for function to write into -->
+<p>The answer for logarithm is: </p>
+<p id="logarithm"></p>
+
+</div>
+
+<script>
+function derivative(){
+	var userInput = document.getElementById("userInput").value;
+	var derivative = math.derivative(userInput, 'x');
+    document.getElementById("derivative").innerHTML = derivative;
+}
+</script>
+
+<script>
+function logarithm(){
+	var userInput = document.getElementById("userLog").value;
+	var logarithm = math.log(userInput);
+    document.getElementById("logarithm").innerHTML = logarithm;
+}
+</script>
+

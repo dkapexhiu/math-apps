@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8">
+		<title>Transfer function and bode plot</title>
+	    	<meta name="viewport" content="width=device-width, initial-scale=1">
+	    
+		<!-- Load highcharts.js before controlplot.js -->
+		<script src="https://code.highcharts.com/adapters/standalone-framework.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script type="text/javascript" src="./js/controlplot.js"></script>
+		
+		<!-- mathJs -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.0.1/math.min.js"></script>
+		
+		<!-- Pretty Math -->
+		<script type="text/javascript"   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+		<script type="text/javascript" src="./js/nouislider.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./css/nouislider.pips.css">
+		
+		<script type="text/javascript" src="./js/demo_transfer_function_bode.js"></script>		
+		
+		<link rel="stylesheet" type="text/css" href="./css/demo_transfer_function_bode.css">
+		<link rel="stylesheet" type="text/css" href="./css/demo_finishing_styles.css">
+		<link rel="stylesheet" type="text/css" href="./css/nouislider.css">
+		
+		<!-- Webfonts -->
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+	    
+    </head>
+	<body>
+		<h1>Transfer function and bode plot</h1>
+		<p id="demo-description"> 
+			This demo illustrates the effect of a dynamic system described by a transfer function on a sine input. <br>
+		</p>
+		<div id="demo-container"  class="page-section">
+			<div id="input">
+				<h3>Transfer Function</h3>
+				<form id="input-form">
+					<p>Fill in a transfer function below by entering the coefficients separated by commas. </p>
+					<span>Numerator: </span> <input type="text" id="input-numerator"> <br>
+					<span>Denominator: </span><input type="text" id="input-denominator"> 
+					<p><input type="button" id="submit-button" value="Submit"></p>
+				</form>
+				<p> Transfer Funtion:
+					<span class="formula" id="tf-function">
+					<!-- $$ h(s) = \frac{\kappa}{\tau s + 1} $$ -->
+					</span>
+				</p>		
+			</div>
+			<div id="bode" class="page-section">
+				<h3>Bode Plot of Transfer Function</h3>
+				<div id="bode-plot-container"></div>
+			</div>
+		</div>
+	</body>
+</html>

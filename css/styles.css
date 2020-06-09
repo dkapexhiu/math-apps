@@ -1,0 +1,16 @@
+.center{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+}
+
+@media all and (max-width:414px){
+.center {
+    transform: scale(1.5)!important;
+    left: 24%!important;
+    top: 24%!important;
+}
+}

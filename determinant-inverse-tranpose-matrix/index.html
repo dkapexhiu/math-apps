@@ -1,0 +1,38 @@
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.6.2/math.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+<script>
+    
+    alert('Welcome to Matrix Solver! It will calculate the determinant, inverse and transpose based on matrix.')
+    
+    alert('Please enter the details of matrix.')
+    var r,c; //r - rows, c - columns
+    r = prompt('Enter the number of rows');
+    c = prompt('Enter the number of columns');
+    var mat = [];
+    for (var i=0; i<r; i++){
+      mat[i] = [];                     // A
+      for (var j=0; j<c; j++){
+        mat[i][j]= prompt ('Enter a value for the cell ' + i + 'x' + j); // B
+      }
+    }
+
+    var determinant = math.det(mat);
+    var inverse = math.inv(mat);
+    var transpose = math.ctranspose(mat);
+
+    document.write('<div class="center">');
+
+    document.write('Matrix ' + mat +'<br>');
+    
+    document.write('Determinant ' + determinant + '<br>');
+    
+    document.write('Inverse ' + inverse + '<br>');
+
+    document.write('Transpose ' + transpose + '<br>'); 
+
+    document.write('</div>');
+
+</script>

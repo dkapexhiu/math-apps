@@ -1,0 +1,115 @@
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+<div class="center">
+
+<p>Write the function below: </p>
+<input type="text" id="userInput" placeholder="Example: (1^x+5x)(2x^2+6x)"></input>
+<button onclick="solve()">Solve</button>
+
+<!-- add this line for function to write into -->
+<p>The answer is: </p>
+<p id="demo"></p>
+
+</div>
+
+<script>
+const helpers = {};
+
+const PolynomialExpansion = (str) => {
+    // first, put the string into an array of polynomial values to be multiplied, clean
+    // up, and standardize so values are consistent format (e.g., 5x^1, 4x^0);
+	const letter = str.match(/[A-Za-z]/)[0];
+	const modifiedStr = str.replace(/[a-zA-Z]/g, 'x')
+        .replace(/-/g, '+-')
+        .replace(/^\+-/g, '^-');
+	let termArray = modifiedStr.split(')');
+	termArray.pop();
+
+	termArray = termArray.map((val) => {
+		let newVal = val.replace(/\(/g, '')
+            .replace(/\d+x(?!\^)/g, '$&^1')
+            .replace(/\+-?\d+(?!x)/g, '$&x^0')
+            .replace(/^\d+$/, '$&x^0')
+			.split('+')
+			.filter(val2 => val2);
+
+		newVal = newVal.map((val2) => {
+			const parts = val2.match(/^(-?\d+)x\^(-?\d+)$/);
+			const newObj = {
+				coefficient: parseInt(parts[1], 10),
+				power: parseInt(parts[2], 10)
+			};
+			return newObj;
+		});
+		return newVal;
+	});
+    // second, iterate over the array using the reduce funtion to send them down to the
+    // polyMultiply method
+	const solution = termArray.reduce((val1, val2) => helpers.polyMultiply(val1, val2));
+
+    // third, sort by power
+	solution.sort((a, b) => b.power - a.power);
+
+
+    // fourth, reduce common powers
+	const newSolArray = [];
+	for (let i = 0; i < solution.length - 1; i++) {
+		if (solution[i].power !== solution[i + 1].power) {
+			newSolArray.push(solution[i]);
+		} else {
+			solution[i + 1].coefficient = solution[i].coefficient + solution[i + 1].coefficient;
+		}
+	}
+	newSolArray.push(solution.pop());
+
+    // fifth, build the new string
+
+	let newString = '';
+
+	newSolArray.forEach((val) => {
+		if (val.power !== 1 && val.power !== 0) {
+			newString += `+${val.coefficient.toString()}${letter}^${val.power.toString()}`;
+		} else if (val.power === 1) {
+			newString += `+${val.coefficient.toString()}${letter}`;
+		} else {
+			newString += `+${val.coefficient.toString()}`;
+		}
+	});
+
+
+	const formattedString = newString.replace(/\+-/g, '-')
+        .replace(/^\+/, '')
+        .replace(/([-+])1([a-zA-Z])/, '$1$2')
+        .replace(/^1([a-zA-Z])/, '$1');
+
+	return (formattedString);
+};
+
+Object.assign(helpers, {
+	polyMultiply(arr1, arr2) {
+		const resultsArray = [];
+		arr1.forEach((val) => {
+			arr2.forEach((val2) => {
+				resultsArray.push(this.termMultiply(val, val2));
+			});
+		});
+		return resultsArray;
+	},
+	// termMultiply takes two objects representing two terms of polynomial expressions
+	// and multiplies them to return an object with coefficient and power values.
+	termMultiply(obj1, obj2) {
+		const returnObj = {};
+		returnObj.coefficient = obj1.coefficient * obj2.coefficient;
+		returnObj.power = obj1.power + obj2.power;
+		return returnObj;
+	}
+});
+
+function solve(){
+	var userInput = document.getElementById("userInput").value;
+	var pln = PolynomialExpansion(userInput);
+    document.getElementById("demo").innerHTML = pln;
+}
+</script>

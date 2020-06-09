@@ -1,0 +1,25 @@
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+<div class="center">
+
+<p>Write the number below: </p>
+<input type="text" id="userInput" placeholder="Example: 5"></input>
+<button onclick="solve()">Solve</button>
+
+<!-- add this line for function to write into -->
+<p>The answer is: </p>
+<p id="demo"></p>
+
+</div>
+
+<script>
+const PentagonalNumber = num => num === 1 ? 1 : PentagonalNumber(num - 1) + (5 * (num - 1));
+
+function solve(){
+	var userInput = document.getElementById("userInput").value;
+	var pentagonal = PentagonalNumber(userInput);
+    document.getElementById("demo").innerHTML = pentagonal;
+}
+</script>

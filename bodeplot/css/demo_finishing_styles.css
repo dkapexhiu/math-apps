@@ -1,0 +1,39 @@
+body
+{
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+h1
+{
+	font-family:  'Ubuntu', Arial, Helvetica, sans-serif;	
+	font-size: 30pt;
+}
+
+#bode, #section2
+{
+	border-left: 2px solid #AAAAAA;
+	width: 70%;
+}
+
+.page-section, #section1, #section2, #section3
+{
+	padding-left: 1%;
+	padding-right: 1%;
+}
+
+#section1
+{
+	width: 20%;
+}
+
+#section3
+{
+	width: 37%
+}
+
+
+@media all and (max-width:414px){
+	#demo-container {display:grid;}
+	#input {width: 100%;}
+	#bode {width: 100%;}
+}

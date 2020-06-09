@@ -1,0 +1,86 @@
+#demo-description
+{
+	width: 70%;
+}
+#input
+{
+	float: left;
+	width: 25%;
+}
+#bode
+{
+	display: inline-block;
+	width: 40%
+}
+#output
+{
+	float: right;
+	width: 35%;
+	
+	/* Does nothing but to output-element but enables children to position relative to this */
+	position: relative; 
+}
+
+#tf-fucntion
+{
+	/*float: left;*/
+}
+
+.formula
+{
+	/* margin-left: 30%; */
+	
+}
+
+#input-signal-box
+{
+	margin-left: 0.5em;
+}
+
+.slider
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.slider-value
+{
+	
+	display:block;
+	float: left;
+	display: none;
+}
+.slider-value-container
+{
+	padding-bottom: 1em;
+}
+#bode-plot-container
+{
+	height: 30em;
+}
+
+#output-plot-container
+{
+	height: 15em;
+}
+
+#input-form   span
+{
+	float: left; 
+	width: 7em;
+}
+
+#output-formulas ul li span:first-child
+{
+	width: 6em;
+}
+
+#output-plot-no-ss
+{
+	position: absolute;
+	top: 30%;
+	left: 40%;
+	visibility: hidden;
+	font-weight: bold;
+	font-family: sans-serif;
+}

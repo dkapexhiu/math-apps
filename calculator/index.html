@@ -1,0 +1,37 @@
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+<div class="center">
+
+<p>Write the number below: </p>
+<input type="text" id="userInput" placeholder="Example: 5+5"></input>
+<button onclick="solve()">Solve</button>
+
+<!-- add this line for function to write into -->
+<p>The answer is: </p>
+<p id="demo"></p>
+
+</div>
+
+<script>
+function Calculator(str) { 
+  var arithmeticOperators = ['+', '-', '/', '*'];
+  var replacedStr = str.replace(/(.)\(/g, function (match, g1) {
+    if (arithmeticOperators.indexOf(g1) != -1)
+      return match;
+    else
+      return match.replace(g1, g1 + '*');
+  });
+  return eval(replacedStr);
+}
+
+var cal = Calculator("20+20");
+console.log(cal);
+
+function solve(){
+	var userInput = document.getElementById("userInput").value;
+	var cal = Calculator(userInput);
+  document.getElementById("demo").innerHTML = cal;
+}
+</script>

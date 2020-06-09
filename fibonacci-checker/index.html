@@ -1,0 +1,37 @@
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+<div class="center">
+
+<p>Write the number below: </p>
+<input type="text" id="userInput" placeholder="Example: 5"></input>
+<button onclick="solve()">Solve</button>
+
+<!-- add this line for function to write into -->
+<p>The answer is: </p>
+<p id="demo"></p>
+
+</div>
+
+<script>
+function FibonacciChecker(num) {
+  function Recursive(n1, n2) {
+    var n = n1 + n2;
+    if (n == num)
+      return true;
+    else if (n < num)
+      return Recursive(n2, n);
+  }
+  if (Recursive(0, 1))
+    return 'yes'
+  else
+    return 'no';
+}
+
+function solve(){
+	var userInput = document.getElementById("userInput").value;
+	var fibonacci = FibonacciChecker(userInput);
+    document.getElementById("demo").innerHTML = fibonacci;
+}
+</script>

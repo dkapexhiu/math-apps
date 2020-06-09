@@ -1,0 +1,34 @@
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+<div class="center">
+
+<p>Write the number below: </p>
+<input type="text" id="userInput" placeholder="Example: [[1,3], [2,2], [2,3], [3,2], [3,1]]"></input>
+<button onclick="solve()">Solve</button>
+
+<!-- add this line for function to write into -->
+<p>The answer is: </p>
+<p id="demo"></p>
+
+</div>
+
+<script>
+var input  = [];
+
+function isSymmetric(r) {
+    // convert to Map
+    var rel = new Map(r.map(pair => [pair[0], new Set]));
+    r.forEach(([a, b]) => rel.get(a).add(b));
+    // Test to see if opposite relation is in Map
+    return r.every(([a, b]) => rel.has(b) && rel.get(b).has(a));
+}
+
+function solve(){
+    var userInput = document.getElementById("userInput").value;
+    input.push(userInput);
+	var symmetric = isSymmetric(input);
+    document.getElementById("demo").innerHTML = symmetric;
+}
+</script>
